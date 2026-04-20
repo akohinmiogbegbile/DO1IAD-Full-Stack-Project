@@ -1,0 +1,18 @@
+@media (max-width: 880px) {
+    .nav-links {
+        display: none;
+    }
+
+    .hamburger-menu {
+        display: block;
+    }
+
+    .hero-left,
+    .hero-right {
+        width: 100%;
+    }
+
+    .project {
+        justify-content: center;
+    }
+}

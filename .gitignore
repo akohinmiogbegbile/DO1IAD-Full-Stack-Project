@@ -1,0 +1,17 @@
+# macOS
+.DS_Store
+
+# VS Code
+.vscode/
+
+# Environment / sensitive files (future-proof)
+.env
+
+# Logs
+*.log
+
+# Node modules (if ever used)
+node_modules/
+
+# Vendor (if you use composer later)
+vendor/
