@@ -378,6 +378,21 @@ a {
     color: var(--text);
 }
 
+textarea.input,
+select.input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background-color: rgba(232, 234, 240, 0.03);
+    color: var(--text);
+    resize: vertical;
+}
+
+select.input option {
+    color: #000;
+}
+
 .input-large {
     height: 56px;
 }
@@ -408,6 +423,22 @@ a {
 .hint {
     color: var(--muted);
     width: 100%;
+}
+
+.project-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.project-info {
+    flex: 1;
+}
+
+.project-actions {
+    display: flex;
+    align-items: center;
 }
 
 /* Footer */
