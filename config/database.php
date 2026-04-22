@@ -1,6 +1,11 @@
 <?php
-//Database connection file
-//This file will create a PDO connection for the whole project, so we can include it in other files to use the database connection
+/*
+ * database.php
+ * Database connection configuration file
+ * 
+ * This file creates a reusable PDO connection to the MySQL database
+ * It is included in pages that need to run SQL queries
+ */
 
 $host = 'localhost';
 $dbname = 'project_db';

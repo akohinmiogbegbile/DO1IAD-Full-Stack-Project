@@ -1,4 +1,12 @@
 <?php
+/*
+ *
+ * This file allows a new user to register an account.
+ * It validates form input, checks for duplicate username/email,
+ * hashes the password, and inserts the new user into the database.
+ */
+
+ //load the database connection
 require_once '../config/database.php';
 
 // Initialise variables for form values and messages.
