@@ -1,11 +1,22 @@
 <?php
+/*
+ *
+ * This file authenticates an existing user.
+ * It validates input, checks the database for a matching username,
+ * verifies the hashed password, creates a session, and redirects
+ * the user to the dashboard after successful login.
+ */
+
+ //load the database connection
 require_once '../config/database.php';
 
 session_start();
 
+//initialise form values and error storage
 $username = '';
 $errors = [];
 
+//Handles the login form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['username'] ?? '');
     $password = $_POST['password'] ?? '';
@@ -19,21 +30,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (empty($errors)) {
-        // Get user from database
+        // Get users record from database by using the username provided in the form. This will return the user record if a matching username is found, or false if no match is found.
         $stmt = $pdo->prepare("SELECT * FROM users WHERE username = ?");
         $stmt->execute([$username]);
 
         $user = $stmt->fetch();
 
         if ($user) {
-            // Verify password
+            // Verify password and confirm it matches the stored hash in the database
             if (password_verify($password, $user['password'])) {
                 
-                // Create session
+                // Create session by storing key user details in the session to keep the user logged in across pages. 
+                // The session will be used to check if the user is authenticated and to identify the user on protected pages.
                 $_SESSION['user_id'] = $user['uid'];
                 $_SESSION['username'] = $user['username'];
 
-                // Redirect to dashboard
+                // Redirect the authenticated user to the dashboard
                 header("Location: dashboard.php");
                 exit();
 

@@ -1,9 +1,15 @@
 <?php
-// Shared header for all public pages.
+/*
+ *
+ * Shared page header and navigation.
+ * The navigation changes depending on whether the user is logged in.
+ */
+
+ // Start session if one has not already been started. This helps to check if the user is logged in and to display the appropriate navigation links.
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-
+//To check if the user is authenticated. 
 $isLoggedIn = isset($_SESSION['user_id']);
 ?>
 <!DOCTYPE html>

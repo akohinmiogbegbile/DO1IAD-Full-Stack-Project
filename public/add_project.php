@@ -1,4 +1,12 @@
 <?php
+/*
+ *
+ * This file allows an authenticated user to create a new project.
+ * It validates the submitted form data and inserts the project
+ * into the database, linking it to the logged-in user's account.
+ */
+
+ //Protect the page by ensuring only authenticated users can access it. If no valid session exists, the user will be redirected to the login page.
 require_once '../includes/auth.php';
 require_once '../config/database.php';
 
@@ -20,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $allowedPhases = ['design', 'development', 'testing', 'deployment', 'complete'];
 
-    // Server-side validation.
+    // Server-side validation to validate the user inputs and ensure they meet the required criteria before sending into the database
     if ($title === '') {
         $errors[] = 'Project title is required.';
     }
@@ -41,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors[] = 'End date cannot be earlier than start date.';
     }
 
-    // Insert project if validation passes.
+    // Insert project if validation passes
     if (empty($errors)) {
         $stmt = $pdo->prepare("
             INSERT INTO projects (title, start_date, end_date, short_description, phase, uid)
@@ -57,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_id']
         ]);
 
-        // Redirect after successful insert.
+        // Redirect the user back to the dashboard after successful insert of the project into the database
         header("Location: dashboard.php");
         exit();
     }

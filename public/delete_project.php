@@ -1,4 +1,11 @@
 <?php
+/*
+ * This file allows an authenticated user to delete one of their projects.
+ * It validates the project ID, confirms the project exists,
+ * checks ownership, and removes the record from the database.
+ */
+
+//Protect the page by ensuring only authenticated users can access it. If no valid session exists, the user will be redirected to the login page.
 require_once '../includes/auth.php';
 require_once '../config/database.php';
 

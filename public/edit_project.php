@@ -1,16 +1,25 @@
 <?php
+/*
+ *
+ * This file allows an authenticated user to edit an existing project.
+ * It retrieves the selected project, checks ownership, validates
+ * updated form input, and saves the changes back to the database.
+ */
+
+ //Protect the page by ensuring only authenticated users can access it. If no valid session exists, the user will be redirected to the login page.
 require_once '../includes/auth.php';
 require_once '../config/database.php';
 
+//Get the selected project ID from the URL 
 $projectId = $_GET['id'] ?? '';
 $errors = [];
 
-// Validate project ID.
+// Validate project ID before using it in the query. 
 if ($projectId === '' || !ctype_digit($projectId)) {
     die('Invalid project ID.');
 }
 
-// Fetch the project.
+// Fetch the project from the database using the provided ID. This will return the project record if a matching ID is found, or false if no match is found.
 $stmt = $pdo->prepare("SELECT * FROM projects WHERE pid = ?");
 $stmt->execute([$projectId]);
 $project = $stmt->fetch();
@@ -19,7 +28,7 @@ if (!$project) {
     die('Project not found.');
 }
 
-// Authorisation check: only owner can edit.
+// Authorisation check: only owner of the project (in this case the person who is logged in using the uid) can edit.
 if ($project['uid'] != $_SESSION['user_id']) {
     die('You are not allowed to edit this project.');
 }
@@ -60,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($endDate !== '' && $startDate !== '' && $endDate < $startDate) {
         $errors[] = 'End date cannot be earlier than start date.';
     }
-
+// If validation passes, update the project in the database with the new values.
     if (empty($errors)) {
         $stmt = $pdo->prepare("
             UPDATE projects

@@ -1,10 +1,18 @@
 <?php
+/*
+ *
+ * Public homepage of the application.
+ * It displays all projects and allows visitors to search
+ * by project title or start date.
+ */
 require_once '../config/database.php';
 
-// Get search query.
+// read the search term from the URL using the GET method. If no search term is provided, it defaults to an empty string. 
+// The trim function is used to remove any leading or trailing whitespace from the search term.
 $search = trim($_GET['search'] ?? '');
 
-// Build query.
+// if a search term is provided, return only matching projects. If no search term is provided, return all projects. 
+// The query uses a JOIN to also fetch the email of the project owner from the users table. The results are ordered by start date in descending order.
 if ($search !== '') {
     $stmt = $pdo->prepare("
         SELECT projects.*, users.email
