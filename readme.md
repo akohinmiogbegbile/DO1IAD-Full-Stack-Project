@@ -4,7 +4,7 @@ A database-driven web application that allows users to manage software projects.
 
 ---
 
-## 🚀 Features
+## Features
 
 ### Public Users
 - View all projects
@@ -21,7 +21,7 @@ A database-driven web application that allows users to manage software projects.
 
 ---
 
-## 🔐 Security Features
+## Security Features
 
 - Password hashing using `password_hash()`
 - Secure login verification using `password_verify()`
@@ -33,7 +33,7 @@ A database-driven web application that allows users to manage software projects.
 
 ---
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 - PHP (server-side logic)
 - MySQL (database)
@@ -44,7 +44,7 @@ A database-driven web application that allows users to manage software projects.
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 
@@ -59,7 +59,7 @@ project-manager/
 
 ---
 
-## ⚙️ Setup Instructions (Local)
+## Setup Instructions (Local)
 
 1. Install XAMPP
 2. Place the project folder inside:
@@ -81,19 +81,7 @@ htdocs/
 
 ---
 
-## 👤 Test Users
-
-Example accounts for testing:
-
-- **Username:** david  
-**Password:** 1234  
-
-- **Username:** inmi  
-**Password:** 1234  
-
----
-
-## 📌 Notes
+## Notes
 
 - The system was developed as part of a university coursework project.
 - It demonstrates core back-end development concepts including authentication, CRUD operations, and secure database interaction.
@@ -101,7 +89,7 @@ Example accounts for testing:
 
 ---
 
-## 📎 Future Improvements
+## Future Improvements
 
 - Deploy application to a live server
 - Improve UI/UX design
@@ -109,9 +97,3 @@ Example accounts for testing:
 - Implement REST API
 - Add pagination for large datasets
 
----
-
-## 📂 Repository
-
-GitHub:  
-https://github.com/akohinmiogbegbile/DO1IAD-Full-Stack-Project.git
